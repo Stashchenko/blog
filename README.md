@@ -14,6 +14,7 @@ Things you may want to cover:
 * Database creation
 
 * Database initialization
+    - `rake db:mongoid:create_indexes`
 
 * How to run the test suite
 

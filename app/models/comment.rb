@@ -3,5 +3,7 @@ class Comment
   include Mongoid::Timestamps
   field :content
   belongs_to :user
-  embedded_in :article
+  belongs_to :commentable, polymorphic: true
+  index({ ﻿commentable_type: 1, ﻿commentable_id: 1})
+
 end
