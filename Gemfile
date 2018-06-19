@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
 ruby '2.4.1'
 
@@ -15,8 +15,14 @@ gem 'rails_admin', '~> 1.3'
 gem 'devise'
 gem 'haml-rails'
 
+
+gem "twitter-bootstrap-rails", github: 'torstenb/twitter-bootstrap-rails'
+gem 'jquery-rails'
+
+gem 'therubyracer'
+
 gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
+
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 

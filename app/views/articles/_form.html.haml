@@ -1,17 +1,15 @@
-= form_with(model: article, local: true) do |form|
-  - if article.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(article.errors.count, "error")
-        prohibited this article from being saved:
-      %ul
-        - article.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = form.label :name
-    = form.text_field :name
-  .field
-    = form.label :content
-    = form.text_area :content
-  .actions
-    = form.submit
+= form_for @article, html: { class: "form form-horizontal article" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, class: 'form-control', required: true
+    = f.error_span(:name)
+  .form-group
+    = f.label :content, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :content, class: 'form-control', required: true
+    = f.error_span(:content)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil,class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), articles_path, :class => 'btn btn-default'
