@@ -9,6 +9,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'mongoid', '~> 7.0', '>= 7.0.1'
+gem 'bson_ext'
 gem 'rails_admin', '~> 1.3'
 
 gem 'coffee-rails', '~> 4.2'
@@ -27,5 +28,3 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
