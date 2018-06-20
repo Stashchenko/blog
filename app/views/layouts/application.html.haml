@@ -26,7 +26,8 @@
             %li= link_to Comment.to_s.pluralize.titleize, comments_path
             %li= link_to "Link 2", "/path2"
             %li= link_to "Link 3", "/path3"
-            %li= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-danger'
+          %ul.nav.navbar-nav.pull-right
+            %li= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-danger pull-right'
 
     .container
       .row
