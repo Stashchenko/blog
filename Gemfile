@@ -13,6 +13,8 @@ gem 'kaminari-mongoid'
 gem 'bson_ext'
 gem 'rails_admin', '~> 1.3'
 gem 'devise'
+gem 'cancancan', '~> 2.0'
+gem 'cancancan-mongoid'
 gem 'haml-rails'
 
 

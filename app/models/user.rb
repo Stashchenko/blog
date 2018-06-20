@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  ROLES = %i[admin super_admin consultant free_supplier standart_supplier].freeze
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,6 +25,9 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
+  ## User role
+  field :role, type: String, default: :standart_supplier
+
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
@@ -33,7 +38,10 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
-  #
 
   has_many :comments
+
+  def role?(role_name)
+    role == role_name.to_s
+  end
 end
