@@ -43,6 +43,10 @@ class User
 
   has_many :comments
 
+  def role_enum
+    ROLES
+  end
+
   def role?(role_name)
     role == role_name.to_s
   end
