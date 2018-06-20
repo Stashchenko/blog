@@ -18,6 +18,7 @@ gem 'haml-rails'
 
 gem "twitter-bootstrap-rails", github: 'torstenb/twitter-bootstrap-rails'
 gem 'jquery-rails'
+gem 'devise-bootstrap-views'
 
 gem 'therubyracer'
 
