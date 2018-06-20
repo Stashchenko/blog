@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Admin::User
+
   ROLES = %i[admin super_admin consultant free_supplier standart_supplier].freeze
 
   # Include default devise modules. Others available are:
@@ -8,22 +10,22 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
+  field :email, type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
-  field :reset_password_token,   type: String
+  field :reset_password_token, type: String
   field :reset_password_sent_at, type: Time
 
   ## Rememberable
   field :remember_created_at, type: Time
 
   ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
+  field :sign_in_count, type: Integer, default: 0
   field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
+  field :last_sign_in_at, type: Time
   field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
+  field :last_sign_in_ip, type: String
 
   ## User role
   field :role, type: String, default: :standart_supplier
@@ -44,4 +46,5 @@ class User
   def role?(role_name)
     role == role_name.to_s
   end
+
 end
