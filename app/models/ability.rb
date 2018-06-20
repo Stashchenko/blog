@@ -3,12 +3,14 @@ class Ability
 
   def initialize(user)
     return unless user
-    can :access, :rails_admin
-    can :dashboard, :all
     if user.role? :super_admin
+      can :access, :rails_admin
+      can :dashboard, :all
       can :manage, :all
     elsif user.role? :admin
-      can :manage, [User, Article, Comment]
+      can :access, :rails_admin
+      can :dashboard, :all
+      can :manage, [Article, Comment]
       can :read, :all
     elsif user.role? :consultant
       can :read, :all
