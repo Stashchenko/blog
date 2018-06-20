@@ -11,22 +11,16 @@
   %br
   = @article.content
 
-.comments
-  %strong= model_class.human_attribute_name(:comments) + ':'
-  %br
-  - @article.comments.each do |c|
-    %p= c.content
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+  %tbody.comments
+    - @article.comments.each do |comment|
+      %tr
+        %td= comment.content
 
-= form_for @comment, remote: true, html: { class: "form form-horizontal article" }, format: :json do |f|
-  .form-group
-    .col-lg-10
-      = f.text_field :content, class: 'form-control', required: true
-      = f.hidden_field :commentable_id, value: @article.id
-      = f.hidden_field :commentable_type, value: @article.class
-    = f.error_span(:content)
-  .form-group.hidden
-    .col-lg-offset-2.col-lg-10
-      = f.submit class: 'btn btn-primary'
+=render 'comments/form', model: @article
 
 
 = link_to t('.back', :default => t("helpers.links.back")), articles_path, :class => 'btn btn-default'
