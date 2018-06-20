@@ -24,10 +24,11 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to Comment.to_s.pluralize.titleize, comments_path
-            %li= link_to "Link 2", "/path2"
-            %li= link_to "Link 3", "/path3"
+            %li= link_to Friendship.to_s.pluralize.titleize, friendships_path
           %ul.nav.navbar-nav.pull-right
-            %li= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-danger pull-right'
+            %button.ui.right.labeled.red.icon.button
+              %i.right.arrow.icon
+              %li= link_to "Logout", destroy_user_session_path, method: :delete, style: 'color: white;'
 
     .container
       .row
@@ -39,7 +40,8 @@
             %h3 Sidebar
             %ul.nav.nav-list
               %li= link_to Comment.to_s.pluralize.titleize, comments_path
-              %li= link_to "Link 2", "/path2"
+              %li= link_to Friendship.to_s.pluralize.titleize, friendships_path
+              %li= link_to "Users List", users_list_path
               %li= link_to "Gems", gem_list_path
       %footer
         %p &copy; Company 2018

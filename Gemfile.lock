@@ -65,6 +65,7 @@ GEM
     cancancan (2.2.0)
     cancancan-mongoid (2.0.0.beta1)
       cancancan (~> 2.0)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -168,6 +169,9 @@ GEM
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.11.4)
     rack (2.0.5)
     rack-pjax (1.0.0)
@@ -235,6 +239,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    semantic-ui-sass (2.3.1.2)
+      sass (>= 3.2)
     sexp_processor (4.11.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -288,10 +294,12 @@ DEPENDENCIES
   kaminari-mongoid
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 6.4, >= 6.4.1)
+  pry
   puma (~> 3.11)
   rails (~> 5.2.0)
   rails_admin (~> 1.3)
   sass-rails (~> 5.0)
+  semantic-ui-sass
   spring
   spring-watcher-listen (~> 2.0.0)
   therubyracer

@@ -16,7 +16,7 @@ gem 'devise'
 gem 'cancancan', '~> 2.0'
 gem 'cancancan-mongoid'
 gem 'haml-rails'
-
+gem 'semantic-ui-sass'
 
 gem "twitter-bootstrap-rails", github: 'torstenb/twitter-bootstrap-rails'
 gem 'jquery-rails'
@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -39,4 +40,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-

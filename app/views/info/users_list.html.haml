@@ -1,0 +1,21 @@
+.page-header
+  %h1='Users List'
+%table.table.table-striped
+  %thead
+    %tr
+      %th= 'Email'
+      %th= 'Last Sign In'
+      %th= 'Role'
+      %th= 'Friendship'
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td= user.last_sign_in_at
+        %td= user.role
+        - if user.has_friendships?
+          %td
+            %i.users.icon
+        - else
+          %td
+            %i.user.plus.icon{action: 'friendship_request', params: {}}

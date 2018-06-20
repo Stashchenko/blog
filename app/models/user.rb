@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   ROLES = %i[admin super_admin consultant free_supplier standart_supplier].freeze
+  has_many :friendships, :inverse_of => :owner
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
