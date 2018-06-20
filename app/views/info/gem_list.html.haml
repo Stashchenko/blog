@@ -1,0 +1,13 @@
+.page-header
+  %h1='Gems'
+%table.table.table-striped
+  %thead
+    %tr
+      %th= 'Name'
+      %th= 'Version'
+  %tbody
+    - @gems.each do |gem|
+      %tr
+        - n, v = gem.split(' ')
+        %td= n
+        %td.badge= v
