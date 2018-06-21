@@ -13,11 +13,14 @@ class Ability
       can :manage, [Article, Comment]
       can :read, :all
     elsif user.role? :consultant
-      can :read, :all
+      can :manage, [Article, Comment], user_id: user.id
+      can :show, [Article, Comment]
     elsif user.role? :free_supplier
-      can :read, :all
+      can :manage, [Article, Comment], user_id: user.id
+      can :show, [Article, Comment]
     elsif user.role? :standart_supplier
-      can :read, :all
+      can :manage, [Article, Comment], user_id: user.id
+      can :show, [Article, Comment]
     end
   end
 end

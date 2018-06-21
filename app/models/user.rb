@@ -42,6 +42,7 @@ class User
   # field :locked_at,       type: Time
 
   has_many :comments
+  has_many :articles
 
   def role?(role_name)
     role == role_name.to_s
