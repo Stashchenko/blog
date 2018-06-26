@@ -1,19 +1,10 @@
-%h1 Listing friendships
+%h1 List of your friends
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @friendships.each do |friendship|
-      %tr
-        %td= link_to 'Show', friendship
-        %td= link_to 'Edit', edit_friendship_path(friendship)
-        %td= link_to 'Destroy', friendship, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Friendship', new_friendship_path
+.ui.middle.aligned.divided.animated.list
+  - @friendships.each do |friendship|
+    - if friendship.status == :accepted
+      .item
+        %img.ui.avatar.image{:src => "#"}/
+        .content
+          .header= friendship.owner_id == current_user.id ? User.find(friendship.friend_id).email : User.find(friendship.owner_id).email
+          = link_to '<i class="red times icon"></i>'.html_safe, {controller: "friendships", params: {id: friendship.id, type: :friendship}, action: 'destroy'}, method: :post

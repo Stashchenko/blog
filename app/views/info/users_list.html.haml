@@ -13,9 +13,13 @@
         %td= user.email
         %td= user.last_sign_in_at
         %td= user.role
-        - if user.has_friendships?
+        - friendship = (Friendship.where(owner_id: current_user.id, friend_id: user.id).present? ? (Friendship.where(owner_id: current_user.id, friend_id: user.id)) : (Friendship.where(owner_id: user.id, friend_id: current_user.id)))
+        - if friendship.present?
           %td
-            %i.users.icon
+            - status_color = friendship.first.status == :accepted ? "green" : friendship.first.status == :declined ? "red" : "grey"
+            %abbr{:title => "#{friendship.first.status} friendship request"}
+              %i{class: "#{status_color} users icon"}
         - else
           %td
-            %i.user.plus.icon{action: 'friendship_request', params: {}}
+            %abbr{:title => "Send friendship request"}
+              = link_to "<i class='blue user plus icon'></i>".html_safe, {controller: "friendships", action: "add_to_friends", params: {owner_id: current_user.id, friend_id: user.id, status: :pending}}, method: :post

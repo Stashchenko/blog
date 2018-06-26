@@ -24,7 +24,21 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to Comment.to_s.pluralize.titleize, comments_path
-            %li= link_to Friendship.to_s.pluralize.titleize, friendships_path
+            %li.dropdown
+              = link_to Friendship.to_s.pluralize.titleize, friendships_path, class: "dropdown icon"
+              .dropdown-content
+                %a.item{href: sent_friendships_path}
+                  %i.paper.plane.icon
+                  Sent
+                  -# = link_to "Sent", sent_friendships_path, style: "display: none"
+                  .floating.ui.red.label{style: "top:unset;"}= Friendship.where(owner_id: current_user.id).count if current_user
+                %a.item{href: received_friendships_path}
+                  %i.mail.icon
+                  Received
+                  -# = link_to "Received", received_friendships_path, style: "display: none"
+                  .floating.ui.red.label{style: "top:unset;"}= Friendship.where(friend_id: current_user.id).count if current_user
+
+
           %ul.nav.navbar-nav.pull-right
             %button.ui.right.labeled.red.icon.button
               %i.right.arrow.icon
@@ -40,7 +54,6 @@
             %h3 Sidebar
             %ul.nav.nav-list
               %li= link_to Comment.to_s.pluralize.titleize, comments_path
-              %li= link_to Friendship.to_s.pluralize.titleize, friendships_path
               %li= link_to "Users List", users_list_path
               %li= link_to "Gems", gem_list_path
       %footer
