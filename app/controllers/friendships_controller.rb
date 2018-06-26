@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+  helper_method :all
   before_action :set_friendship, only: [:show, :edit, :update, :destroy]
 
   # GET /friendships
@@ -25,16 +26,6 @@ class FriendshipsController < ApplicationController
   # POST /friendships.json
   def create
     @friendship = Friendship.new(friendship_params)
-
-    respond_to do |format|
-      if @friendship.save
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
-        format.json { render :show, status: :created, location: @friendship }
-      else
-        format.html { render :new }
-        format.json { render json: @friendship.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /friendships/1
@@ -54,11 +45,20 @@ class FriendshipsController < ApplicationController
   # DELETE /friendships/1
   # DELETE /friendships/1.json
   def destroy
-    @friendship.destroy
-    respond_to do |format|
-      format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    puts "PARAMS: #{params}"
+    Friendship.find(params[:id]).destroy
+    url = params[:type] == :sent ? sent_friendships_path : params[:type] == :received ? received_friendships_path : friendships_path
+    redirect_to url, notice: 'Friendship was successfully removed.'
+  end
+
+  def add_to_friends
+    Friendship.create(owner_id: params[:owner_id], friend_id: params[:friend_id], status: params[:status])
+    redirect_back fallback_location: users_list_url
+  end
+
+  def approve_friendship
+    Friendship.find(params[:id]).update(status: :accepted)
+    redirect_to friendships_path
   end
 
   private
@@ -70,11 +70,6 @@ class FriendshipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def friendship_params
       params.fetch(:friendship, {})
-    end
-
-    def has_friendship_with_current_user?(current_user)
-      friendship = Friendship.find_by(owner_id: current_user.id) || Friendship.find_by(friend_id: current_user.id)
-      friendship.nil? ? false : true
     end
 
 end

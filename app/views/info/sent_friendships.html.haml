@@ -1,0 +1,18 @@
+.page-header
+  %h1='Sent requests'
+%table.ui.fixed.single.line.celled.table
+  %thead
+    %tr
+      %th Receiver
+      %th Status
+      %th Actions
+  %tbody
+    - @sent_friendships.each do |friendship|
+      - cell_type = friendship.status == :pending ? "warning" : friendship.status == :accepted ? "positive" : "negative"
+      %tr{class: "#{cell_type}"}
+        %td= User.find(friendship.friend_id).email
+        %td
+          - label_col = cell_type == "positive" ? "green" : cell_type == "negative" ? "red" : ""
+          .ui.label{class: "#{label_col}"}= friendship.status
+        %td
+          = link_to '<i class="red times icon"></i>'.html_safe, {controller: "friendships", params: {id: friendship.id, type: :sent}, action: 'destroy'}, method: :post
